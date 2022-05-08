@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('linea');
             $table->time('horaInicio');
             $table->time('horaFinal');
-            $table->unsignedBigInteger('ruta_id');
+            //$table->unsignedBigInteger('ruta_id');
             $table->timestamps();
 
-            $table->softDeletes();
+            /*$table->softDeletes();
 
             $table->foreign('ruta_id')->on('rutas')->references('id')
-                ->onDelete('cascade');
+                ->onDelete('cascade');*/
         });
     }
 
