@@ -28,3 +28,5 @@ Route::group([
         Route::post('me', 'App\Http\Controllers\AuthController@me');
     }
 );
+
+Route::get('lineas', 'App\Http\Controllers\LineaController@getLineasAll');

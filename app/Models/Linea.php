@@ -14,12 +14,12 @@ class Linea extends Model
         'linea',
         'horaInicio',
         'horaFinal',
-        'ruta_id'
+        //'ruta_id'
     ];
 
-    public function rutas() {
+    /*public function rutas() {
         return $this->belongsTo(Ruta::class, 'ruta_id');
-    }
+    }*/
 
     public function micros() {
         return $this->hasMany(Micro::class, 'linea_id');
@@ -27,5 +27,9 @@ class Linea extends Model
 
     public function pasajeroCoordenada() {
         return $this->hasMany(PasajeroCoordenada::class, 'linea_id');
+    }
+
+    public function getLineas() {
+        return $this->orderBy('id', 'ASC')->get();
     }
 }
