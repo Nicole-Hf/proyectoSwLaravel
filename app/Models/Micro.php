@@ -14,7 +14,7 @@ class Micro extends Model
         'descripcion',
         'placa',
         'interno',
-        'chofer_id',
+        'conductor_id',
         'linea_id'
     ];
 
@@ -22,7 +22,7 @@ class Micro extends Model
         return $this->belongsTo(Linea::class, 'linea_id');
     }
 
-    public function chofer() {
-        return $this->belongsTo(User::class, 'chofer_id');
+    public function conductor() {
+        return $this->belongsTo(Conductor::class, 'conductor_id');
     }
 }

@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->softDeletes();
 
-            $table->foreign('pasajero_id')->references('id')->on('users')
+            $table->foreign('pasajero_id')->references('id')->on('pasajeros')
                 ->onDelete('cascade');
             $table->foreign('coordenada_id')->references('id')->on('coordenadas')
                 ->onDelete('cascade');

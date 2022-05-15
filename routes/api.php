@@ -26,7 +26,13 @@ Route::group([
         Route::post('logout', 'App\Http\Controllers\AuthController@logout');
         Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
         Route::post('me', 'App\Http\Controllers\AuthController@me');
+
+        Route::post('login/conductor', 'App\Http\Controllers\ConductorController@login');
+        Route::post('register/conductor', 'App\Http\Controllers\ConductorController@register');
+        Route::post('logout/conductor', 'App\Http\Controllers\ConductorController@logout');
+        Route::post('refresh/conductor', 'App\Http\Controllers\ConductorController@refresh');
+        Route::post('me/conductor', 'App\Http\Controllers\ConductorController@me');
     }
 );
 
-Route::get('lineas', 'App\Http\Controllers\LineaController@getLineasAll');
+Route::get('lineas', 'App\Http\Controllers\LineaController@getLineas');

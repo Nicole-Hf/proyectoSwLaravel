@@ -26,6 +26,6 @@ class PasajeroCoordenada extends Model
     }
 
     public function pasajero() {
-        return $this->belongsTo(User::class, 'pasajero_id');
+        return $this->belongsTo(Pasajero::class, 'pasajero_id');
     }
 }

@@ -22,7 +22,6 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
-        'tipo'
     ];
 
     /**
@@ -64,11 +63,11 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function micros() {
-        return $this->hasMany(Micro::class, 'chofer_id');
+    public function conductores() {
+        return $this->hasOne(Conductor::class, 'user_id');
     }
 
-    public function pasajerosCoordenadas() {
-        return $this->hasMany(PasajeroCoordenada::class, 'pasajero_id');
+    public function pasajeros() {
+        return $this->hasOne(Pasajero::class, 'user_id');
     }
 }

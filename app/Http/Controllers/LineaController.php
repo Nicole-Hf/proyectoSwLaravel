@@ -21,8 +21,6 @@ class LineaController extends Controller
             $linea = new \stdClass();
             $linea->id = $item->id;
             $linea->linea = $item->linea;
-            $linea->horaInicio = $item->horaInicio;
-            $linea->horaFinal = $item->horaFinal;
             array_push($lineas, $linea);
         }
 

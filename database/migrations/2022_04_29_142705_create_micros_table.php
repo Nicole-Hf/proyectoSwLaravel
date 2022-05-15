@@ -15,16 +15,18 @@ return new class extends Migration
     {
         Schema::create('micros', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');
             $table->string('placa');
+            $table->string('modelo')->nullable();
+            $table->string('servicios')->nullable();
             $table->unsignedInteger('interno');
-            $table->unsignedBigInteger('chofer_id');
+            $table->unsignedInteger('capacidad')->nullable();
+            $table->unsignedBigInteger('conductor_id');
             $table->unsignedBigInteger('linea_id');
             $table->timestamps();
 
             $table->softDeletes();
 
-            $table->foreign('chofer_id')->on('users')->references('id')
+            $table->foreign('conductor_id')->on('conductores')->references('id')
                 ->onDelete('cascade');
             $table->foreign('linea_id')->on('lineas')->references('id')
                 ->onDelete('cascade');

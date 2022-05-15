@@ -7,9 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
-use App\Models\Pasajero;
+use App\Models\Conductor;
 
-class AuthController extends Controller
+class ConductorController extends Controller
 {
     /**
      * Create a new AuthController instance.
@@ -115,10 +115,10 @@ class AuthController extends Controller
             ['password' => bcrypt($request->password)]
         ));
 
-        $pasajero = new Pasajero();
-        $pasajero->foto = $request->foto;
-        $pasajero->user_id = $user->id;
-        $pasajero->save();
+        $conductor = new Conductor();
+        $conductor->telefono = $request->telefono;
+        $conductor->user_id = $user->id;
+        $conductor->save();
 
         return response()->json([
             'message' => 'Usuario creado',
