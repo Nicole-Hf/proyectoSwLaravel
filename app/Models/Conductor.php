@@ -20,6 +20,10 @@ class Conductor extends Model
     }
 
     public function micros() {
-        return $this->hasMany(Micro::class, 'chofer_id');
+        return $this->hasMany(Micro::class, 'conductor_id');
+    }
+
+    public function getUser($user) {
+        return $this->where(['user_id' => $user])->first();
     }
 }

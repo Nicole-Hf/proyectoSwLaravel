@@ -11,9 +11,11 @@ class Micro extends Model
 
     protected $table = 'micros';
     protected $fillable = [
-        'descripcion',
         'placa',
+        'modelo',
+        'servicios',
         'interno',
+        'capacidad',
         'conductor_id',
         'linea_id'
     ];

@@ -35,4 +35,5 @@ Route::group([
     }
 );
 
-Route::get('lineas', 'App\Http\Controllers\LineaController@getLineas');
+Route::get('lineas', 'App\Http\Controllers\LineaController@getLineasAll');
+Route::post('createBus', 'App\Http\Controllers\LineaController@createBus');

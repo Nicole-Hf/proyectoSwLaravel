@@ -39,9 +39,19 @@ class ConductorController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         } else {
             $user = auth()->user();
+
+            $conductor = new Conductor();
+            $conductor = $conductor->getUser($user->id);
+
+            $userConductor = new \stdClass();
+            $userConductor->id = $user->id;
+            $userConductor->name = $user->name;
+            $userConductor->email = $user->email;
+            $userConductor->password = $user->password;
+            $userConductor->conductor_id = $conductor->id;
             $response = [
                 'success' => true,
-                'user' => $user,
+                'user' => $userConductor,
                 'token' => $token
             ];
         }
@@ -120,9 +130,16 @@ class ConductorController extends Controller
         $conductor->user_id = $user->id;
         $conductor->save();
 
+        $userConductor = new \stdClass();
+        $userConductor->id = $user->id;
+        $userConductor->name = $user->name;
+        $userConductor->email = $user->email;
+        $userConductor->password = $user->password;
+        $userConductor->conductor_id = $conductor->id;
+
         return response()->json([
             'message' => 'Usuario creado',
-            'user' => $user
+            'user' => $userConductor
         ], 401);
     }
 }
