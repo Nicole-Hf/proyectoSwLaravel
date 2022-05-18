@@ -63,4 +63,10 @@ class LineaController extends Controller
             'bus' => $bus
         ], 401);
     }
+
+    public function getBus($conductor) {
+        $bus = Micro::where(['conductor_id' => $conductor])->get();
+
+        return response()->json($bus);
+    }
 }

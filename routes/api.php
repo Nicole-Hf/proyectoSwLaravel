@@ -37,3 +37,4 @@ Route::group([
 
 Route::get('lineas', 'App\Http\Controllers\LineaController@getLineasAll');
 Route::post('createBus', 'App\Http\Controllers\LineaController@createBus');
+Route::get('getBus/{conductor}', 'App\Http\Controllers\LineaController@getBus');

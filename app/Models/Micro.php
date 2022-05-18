@@ -27,4 +27,8 @@ class Micro extends Model
     public function conductor() {
         return $this->belongsTo(Conductor::class, 'conductor_id');
     }
+
+    public function getBus($bus) {
+        return $this->where(['conductor_id' => $bus])->get();
+    }
 }
