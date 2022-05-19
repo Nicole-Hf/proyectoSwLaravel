@@ -29,6 +29,6 @@ class Micro extends Model
     }
 
     public function getBus($bus) {
-        return $this->where(['conductor_id' => $bus])->get();
+        return $this->where(['conductor_id' => $bus])->first();
     }
 }

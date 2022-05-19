@@ -58,15 +58,24 @@ class LineaController extends Controller
         $bus->linea_id = $request->linea_id;
         $bus->save();
 
-        return response()->json([
-            'message' => 'Micro creado',
-            'bus' => $bus
-        ], 401);
+        return response()->json($bus, 401);
     }
 
     public function getBus($conductor) {
-        $bus = Micro::where(['conductor_id' => $conductor])->get();
+        $bus = new Micro();
+        $bus = $bus->getBus($conductor);
 
-        return response()->json($bus);
+        $linea = Linea::where(['id' => $bus->linea_id])->first();
+
+        $microbus = new \stdClass();
+        $microbus->id = $bus->id;
+        $microbus->placa = $bus->placa;
+        $microbus->modelo = $bus->modelo;
+        $microbus->servicios = $bus->servicios;
+        $microbus->interno = $bus->interno;
+        $microbus->capacidad = $bus->capacidad;
+        $microbus->linea = $linea->linea;
+
+        return response()->json($microbus);
     }
 }
