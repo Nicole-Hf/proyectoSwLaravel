@@ -13,14 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('conductores', function (Blueprint $table) {
+        Schema::create('autos', function (Blueprint $table) {
             $table->id();
-            $table->string('telefono')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->string('modelo');
+            $table->string('placa')->unique();
+            $table->string('color');
+            $table->string('servicio')->nullable();
+            $table->unsignedBigInteger('conductor_id');
             $table->timestamps();
+
             $table->softDeletes();
 
-            $table->foreign('user_id')->on('users')->references('id')
+            $table->foreign('conductor_id')->on('conductores')->references('id')
                 ->onDelete('cascade');
         });
     }
@@ -32,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conductores');
+        Schema::dropIfExists('autos');
     }
 };

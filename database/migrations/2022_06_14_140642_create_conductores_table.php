@@ -13,18 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lineas', function (Blueprint $table) {
+        Schema::create('conductores', function (Blueprint $table) {
             $table->id();
-            $table->string('linea');
-            $table->time('horaInicio');
-            $table->time('horaFinal');
-            //$table->unsignedBigInteger('ruta_id');
+            $table->string('foto')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->softDeletes();
 
-            /*$table->softDeletes();
-
-            $table->foreign('ruta_id')->on('rutas')->references('id')
-                ->onDelete('cascade');*/
+            $table->foreign('user_id')->on('users')->references('id')
+                ->onDelete('cascade');
         });
     }
 
@@ -35,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lineas');
+        Schema::dropIfExists('conductores');
     }
 };

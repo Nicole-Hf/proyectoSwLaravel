@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pasajeros', function (Blueprint $table) {
             $table->id();
-            $table->string('foto')->nullable();
+            $table->string('telefono')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();

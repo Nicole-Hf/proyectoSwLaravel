@@ -13,11 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rutas', function (Blueprint $table) {
+        Schema::create('solicitudes', function (Blueprint $table) {
             $table->id();
-            $table->float('origen', 8, 2);
-            $table->float('destino', 8, 2);
+            $table->double('monto')->nullable();
+            $table->unsignedBigInteger('auto_id');
+            $table->unsignedBigInteger('viaje_id');
             $table->timestamps();
+
+            $table->softDeletes();
+
+            $table->foreign('auto_id')->on('autos')->references('id')
+                ->onDelete('cascade');
+            $table->foreign('viaje_id')->on('viajes')->references('id')
+                ->onDelete('cascade');
         });
     }
 

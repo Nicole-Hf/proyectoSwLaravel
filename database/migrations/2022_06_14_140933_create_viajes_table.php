@@ -13,21 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pasajeros_coordenadas', function (Blueprint $table) {
+        Schema::create('viajes', function (Blueprint $table) {
             $table->id();
-            $table->boolean('esFavorito');
+            $table->double('tarifa');
+            $table->double('latO');
+            $table->double('longO');
+            $table->double('latD');
+            $table->double('longD');
             $table->unsignedBigInteger('pasajero_id');
-            $table->unsignedBigInteger('coordenada_id');
-            $table->unsignedBigInteger('linea_id');
             $table->timestamps();
 
             $table->softDeletes();
 
-            $table->foreign('pasajero_id')->references('id')->on('pasajeros')
-                ->onDelete('cascade');
-            $table->foreign('coordenada_id')->references('id')->on('coordenadas')
-                ->onDelete('cascade');
-            $table->foreign('linea_id')->references('id')->on('lineas')
+            $table->foreign('pasajero_id')->on('pasajeros')->references('id')
                 ->onDelete('cascade');
         });
     }
@@ -39,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pasajeros_coordenadas');
+        Schema::dropIfExists('viajes');
     }
 };
