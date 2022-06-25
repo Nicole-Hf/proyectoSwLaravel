@@ -13,18 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('solicitudes', function (Blueprint $table) {
+        Schema::create('autos_pedidos', function (Blueprint $table) {
             $table->id();
-            $table->double('monto')->nullable();
-            $table->unsignedBigInteger('auto_id');
-            $table->unsignedBigInteger('viaje_id');
+            $table->date('fecha');
+            $table->time('hora');
+            $table->double('monto');
+            $table->boolean('aceptado');
+            $table->unsignedBigInteger('conductor_id');
+            $table->unsignedBigInteger('pedido_id');
             $table->timestamps();
 
             $table->softDeletes();
 
-            $table->foreign('auto_id')->on('autos')->references('id')
+            $table->foreign('conductor_id')->on('conductores')->references('id')
                 ->onDelete('cascade');
-            $table->foreign('viaje_id')->on('viajes')->references('id')
+            $table->foreign('pedido_id')->on('pedidos')->references('id')
                 ->onDelete('cascade');
         });
     }
@@ -36,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rutas');
+        Schema::dropIfExists('autos_pedidos');
     }
 };

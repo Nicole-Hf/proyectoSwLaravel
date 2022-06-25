@@ -13,15 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('comprobantes', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('email')->unique()->nullable();
-            $table->string('telefono')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            //$table->string('password');
-            $table->rememberToken();
+            $table->double('monto');
+            $table->date('fecha');
+            $table->string('origen');
+            $table->string('destino');
+            $table->unsignedBigInteger('pago_id');
             $table->timestamps();
+
+            $table->softDeletes();
+
+            $table->foreign('pago_id')->on('formas_pagos')->references('id')
+                ->onDelete('cascade');
         });
     }
 
@@ -32,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('comprobantes');
     }
 };

@@ -10,7 +10,7 @@ class Pasajero extends Model
     use HasFactory;
     protected $table = 'pasajeros';
     protected $fillable = [
-        'telefono',
+        'fechaNacimiento',
         'user_id',
     ];
 
@@ -18,7 +18,7 @@ class Pasajero extends Model
         return $this->belongsTo(User::class,'user_id');
     }
 
-    public function viajes() {
-        return $this->hasMany(Viaje::class, 'pasajero_id');
+    public function pedidos() {
+        return $this->hasMany(Pedido::class, 'pasajero_id');
     }
 }

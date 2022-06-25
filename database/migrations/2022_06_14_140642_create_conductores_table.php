@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('conductores', function (Blueprint $table) {
             $table->id();
             $table->string('foto')->nullable();
+            $table->string('sexo')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();

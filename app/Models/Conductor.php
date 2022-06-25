@@ -11,14 +11,19 @@ class Conductor extends Model
     protected $table = 'conductores';
     protected $fillable = [
         'foto',
+        'sexo',
         'user_id',
     ];
 
-    public function users() {
+    public function user() {
         return $this->belongsTo(User::class,'user_id');
     }
 
-    public function autos() {
-        return $this->hasMany(Auto::class, 'conductor_id');
+    public function auto() {
+        return $this->hasOne(Auto::class, 'conductor_id');
+    }
+
+    public function autos_pedidos() {
+        return $this->hasMany(AutoPedido::class, 'conductor_id');
     }
 }
