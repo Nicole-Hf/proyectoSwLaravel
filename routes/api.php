@@ -26,6 +26,7 @@ Route::group([
         Route::post('logout', 'App\Http\Controllers\AuthController@logout');
         Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
         Route::post('me', 'App\Http\Controllers\AuthController@me');
+        Route::post('edit/{user}', 'App\Http\Controllers\PasajeroController@editarUser');
 
         Route::post('login/conductor', 'App\Http\Controllers\ConductorController@login');
         Route::post('register/conductor', 'App\Http\Controllers\ConductorController@register');

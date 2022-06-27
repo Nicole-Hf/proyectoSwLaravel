@@ -33,7 +33,7 @@ class AuthController extends Controller
      */
     public function login()
     {
-        $credentials = request(['email', 'password']);
+        $credentials = request(['telefono', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -101,9 +101,9 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|min:6',
+            'name' => 'required|string',
+            'telefono' => 'required|string|min:8|unique:users',
+            'password' => 'required|string|min:6'
         ]);
 
         if ($validator->fails()) {
@@ -116,7 +116,6 @@ class AuthController extends Controller
         ));
 
         $pasajero = new Pasajero();
-        $pasajero->foto = $request->foto;
         $pasajero->user_id = $user->id;
         $pasajero->save();
 
